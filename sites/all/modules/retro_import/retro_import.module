@@ -1,0 +1,286 @@
+<?php
+
+/**
+* Implements hook_menu().
+*/
+function retro_import_menu() {
+  $items = array();
+
+  $items['retro-import'] = array(
+    'title' => 'Import content',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('retro_import_form'),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'main-menu'
+  );
+
+  return $items;
+}
+
+function retro_import_form($form, &$form_state) {
+
+  $form['filename'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Filename'),
+    '#default_value' => '1990.csv',
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Adatok kiolvasása',
+  );
+
+  
+  if (isset($form_state['storage'])) {
+    $form['output'] = array(
+      '#markup' => $form_state['storage']['output'],
+      '#prefix' => '<div class="output">',
+      '#suffix' => '</div>',
+    );
+  }
+  
+  return $form;
+}
+
+function retro_import_form_submit($form, &$form_state) {
+  $file = drupal_get_path('module', 'retro_import') . '/data/' . $form_state['values']['filename'];
+  $csv_data = array_map('str_getcsv', file($file));
+
+  $row = $csv_data[2];
+  for ($c = 1; $c < count($csv_data); $c++) {
+    $row = $csv_data[$c];
+    if (empty($row[1])) {
+      continue;
+    }
+
+    $song = retro_import_populate_song($row);
+    $song_existing = retro_import_find_song_by_title($song['title']);
+    if (empty($song_existing)) {
+      retro_import_save_song($song);
+    } else {
+      drupal_set_message($song['title'] . ' already existing.');
+    }
+
+    $award = retro_import_populate_award($row);
+  }
+
+  $form_state['storage']['output'] = 'finished!';
+  $form_state['rebuild'] = TRUE;
+}
+
+function retro_import_populate_song($row) {
+  $song = array(
+    'lead' => $row[1],
+    'body' => $row[2],
+    'list_billboard_title' => retro_import_get_url($row[4])[2][0],
+    'list_billboard' => retro_import_get_url($row[4])[1][0],
+    'list_official_charts_title' => retro_import_get_url($row[5])[2][0],
+    'list_official_charts' => retro_import_get_url($row[5])[1][0],
+    'list_offizielle_charts_title' => retro_import_get_url($row[6])[2][0],
+    'list_offizielle_charts' => retro_import_get_url($row[6])[1][0],
+    'youtube' => retro_import_get_youtube_id($row[8])[1][0],
+    'creation_date' =>  retro_import_strtotime($row[10]),
+    'title' => $row[16],
+    'artist' => $row[17],
+    'album' => $row[18],
+    'genre' => $row[19],
+    'year' => $row[20],
+    'awards' => $row[21],
+    'wikipedia' => retro_import_get_url($row[23])[1][0],
+    'deezer' => retro_import_get_url($row[24])[1][0],
+    'spotify' => retro_import_get_url($row[25])[1][0],
+    'googleplay' => retro_import_get_url($row[26])[1][0],
+    'lyrics' => retro_import_get_url($row[28])[1][0],
+  );
+
+  return $song;
+}
+
+function retro_import_populate_award($row) {
+  $award = array(
+    
+  );
+}
+
+function retro_import_strtotime($date) {
+  $pattern = '/(.*?)\. (.*?)\ (.*?)-/';
+  preg_match_all($pattern, $date, $matches);
+
+  $months = array('január', 'február', 'március', 'április', 'május', 'június', 'július', 'augusztus', 'szeptember', 'október', 'november', 'december');
+  $month = array_search($matches[2][0], $months) + 1;
+  if (strlen($month) == 1) {
+    $month = '0' . $month;
+  }
+
+  return strtotime($matches[3][0] . '.' . $month . '.' . $matches[1][0] . '.');
+}
+
+function retro_import_get_url($link) {
+  $pattern = '/=HYPERLINK\("(.*?)\","(.*?)\"\)/';
+  preg_match_all($pattern, $link, $matches);
+
+  return $matches;
+}
+
+function retro_import_get_youtube_id($link) {
+  $pattern = '/watch\?v=(.*?)$/';
+  preg_match_all($pattern, $link, $matches);
+
+  return $matches;
+}
+
+function retro_import_save_song($song) {
+
+  $values = array(
+    'type' => 'song',
+    'uid' => 1,
+    'status' => 0,
+    'comment' => 0,
+    'promote' => 0,
+  );
+
+  $entity = entity_create('node', $values);
+  $ewrapper = entity_metadata_wrapper('node', $entity);
+
+  $ewrapper->created->set($song['creation_date']);
+  dpm($song['creation_date']);
+  $ewrapper->title->set($song['title']);
+  $ewrapper->field_lead->set($song['lead']);
+  $ewrapper->field_body->set($song['body']);
+
+  // dpm($song);
+
+  $ewrapper->field_artist->set(array(retro_import_get_term($song['artist'], 'artist')));
+  $ewrapper->field_album->set(retro_import_get_term($song['album'], 'album'));
+  $ewrapper->field_genre->set(retro_import_get_terms($song['genre'], 'genre'));
+  $ewrapper->field_year->set(retro_import_get_term($song['year'], 'year'));
+  $ewrapper->field_youtube_id->set($song['youtube']);
+  $ewrapper->field_awards->set($song['awards']);
+
+  $ewrapper->field_list_billboard->set(
+    array(
+      'url' => $song['list_billboard'],
+      'title' => $song['list_billboard_title'],
+      'attributes' => array(),  
+    )
+  );
+
+  $ewrapper->field_list_official_charts->set(
+    array(
+      'url' => $song['list_official_charts'],
+      'title' => $song['list_official_charts_title'],
+      'attributes' => array(),  
+    )
+  );
+
+  $ewrapper->field_list_offizielle_deutsche->set(
+    array(
+      'url' => $song['list_offizielle_charts'],
+      'title' => $song['list_offizielle_charts_title'],
+      'attributes' => array(),  
+    )
+  );
+
+  $ewrapper->field_wikipedia->set(
+    array(
+      'url' => $song['wikipedia'],
+      'title' => 'Wikipedia',
+      'attributes' => array(),  
+    )
+  );
+
+  $ewrapper->field_deezer->set(
+    array(
+      'url' => $song['deezer'],
+      'title' => 'Deezer',
+      'attributes' => array(),  
+    )
+  );
+
+  $ewrapper->field_spotify->set(
+    array(
+      'url' => $song['spotify'],
+      'title' => 'Spotify',
+      'attributes' => array(),  
+    )
+  );
+
+  $ewrapper->field_google_play->set(
+    array(
+      'url' => $song['googleplay'],
+      'title' => 'Google Play',
+      'attributes' => array(),  
+    )
+  );
+
+  $ewrapper->field_lyrics->set(
+    array(
+      'url' => $song['lyrics'],
+      'title' => 'Lyrics',
+      'attributes' => array(),  
+    )
+  );
+
+  $nid = $ewrapper->save();
+
+  drupal_set_message($song['title'] . ' saved.');
+}
+
+function retro_import_get_term($termName, $vocabName) {
+  $termObj = taxonomy_get_term_by_name($termName, $vocabName);
+  if (empty($termObj)) {
+    $vocabObj = taxonomy_vocabulary_machine_name_load($vocabName);
+ 
+    $term = (object) array(
+     'name' => $termName,
+     'vid' => $vocabObj->vid,
+    );
+
+    taxonomy_term_save($term);
+  } else {
+    $term = reset($termObj);
+  }
+
+  return $term->tid;
+}
+
+function retro_import_get_terms($string, $vocabName) {
+  $string = str_replace("/", ",", $string);
+  $terms = explode(',', $string);
+
+  foreach ($terms as $term) {
+    $term = trim($term);
+    $tids[] = retro_import_get_term($term, $vocabName);
+  }
+
+  return $tids;
+}
+
+function retro_import_youtube_api($videoID) {
+  $key = 'AIzaSyBWMTgnkdp1xtgUKGR-Pn12obTctfy9eL8';
+  $json = file_get_contents("https://www.googleapis.com/youtube/v3/videos?part=statistics&id=" . $videoID . "&key=" . $key);
+  $jsonData = json_decode($json);
+  $views = $jsonData->items[0]->statistics->viewCount;
+  return number_format($views);
+}
+
+function retro_import_find_song_by_title($title) {
+  $query = new EntityFieldQuery();
+
+
+  $entities = $query->entityCondition('entity_type', 'node')
+  ->propertyCondition('type', 'song')
+  ->propertyCondition('title', $title)
+  ->range(0,1)
+  ->execute();
+
+  $node = [];
+  if (!empty($entities['node'])) {
+    $keys = array_keys($entities['node']);
+    $nid = array_shift($keys);
+    $node = node_load($nid);
+  }
+
+  return $node;
+}

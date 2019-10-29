@@ -1,0 +1,42 @@
+/* line 1, ../sass/style.sass */
+.header {
+  text-transform: uppercase;
+}
+/* line 3, ../sass/style.sass */
+.header .pane-page-logo {
+  width: 150px;
+  float: left;
+}
+/* line 6, ../sass/style.sass */
+.header .pane-page-site-name {
+  font-weight: bold;
+  font-size: 50px;
+  line-height: 50px;
+}
+/* line 11, ../sass/style.sass */
+.header .pane-page-slogan {
+  font-size: 20px;
+  color: red;
+}
+
+/* line 16, ../sass/style.sass */
+.view-songs .views-field-title, .view-song .views-field-title {
+  text-decoration: none;
+  font-size: 2em;
+  color: #e3201b;
+  font-weight: bold;
+}
+/* line 22, ../sass/style.sass */
+.view-songs .views-field-title a, .view-song .views-field-title a {
+  text-decoration: none;
+  color: #e3201b;
+}
+/* line 26, ../sass/style.sass */
+.view-songs .views-field-field-lead h2, .view-song .views-field-field-lead h2 {
+  font-size: 1em;
+}
+/* line 28, ../sass/style.sass */
+.view-songs .views-field-created, .view-song .views-field-created {
+  font-weight: bold;
+  font-size: 0.6em;
+}

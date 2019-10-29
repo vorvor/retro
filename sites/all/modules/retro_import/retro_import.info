@@ -1,0 +1,4 @@
+name = Retro Import content
+description = Import content from Google Spreadsheet CSV export.
+core = 7.x
+version = 7.x-1.x
