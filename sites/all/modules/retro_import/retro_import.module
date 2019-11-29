@@ -10,7 +10,7 @@ function retro_import_menu() {
     'title' => 'Import content',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('retro_import_form'),
-    'access callback' => TRUE,
+    'access callback' => FALSE,
     'type' => MENU_NORMAL_ITEM,
     'menu_name' => 'main-menu'
   );
