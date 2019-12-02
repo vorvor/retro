@@ -1,0 +1,267 @@
+<?php
+
+function motor_menu() {
+
+  $items['dashboard'] = array(
+    'title' => 'Dashboard',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('motor_form'),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    'menu_name' => 'main-menu',
+  );
+
+  $items['ajax/custom-ac'] = array(
+    'access arguments' => array('access administration pages'),
+    'page callback' => 'motor_custom_autocomplete',
+    'access callback' => 'motor_search_owner_permission',
+    'page arguments' => array(2),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+function motor_init() {
+  $path = parse_url(request_uri(), PHP_URL_PATH);
+
+  $path_elements = explode('/', $path);
+  array_pop($path_elements);
+  $path_without_last = implode('/', $path_elements);
+
+  drupal_add_js(drupal_get_path('module', 'motor') . '/js/script.js');
+
+  if ($path_without_last == '/node/add/event-treatment') {
+
+    drupal_add_js(drupal_get_path('module', 'motor') . '/js/motor_autocomplete.js');
+    drupal_add_css(drupal_get_path('module', 'motor') . '/css/motor_autocomplete.css');
+  }
+
+  if ($path === '/dashboard' || $path === '/') {
+    drupal_add_js(drupal_get_path('module', 'motor') . '/js/dashboard.js');
+    $settings = array(
+      'path' => drupal_get_path('module', 'motor'),
+   );
+    
+  }
+
+}
+
+function motor_search_owner_permission() {
+  global $user;
+  if ($user->uid > 0) {
+    return TRUE;
+  }
+
+  return FALSE;
+}
+
+function motor_search_node($search_phrase) {
+  $query = db_select('node', 'n')
+  ->fields('n', array('nid', 'title', 'type'))
+  ->condition('n.title', '%' . db_like($search_phrase) . '%', 'LIKE')
+  ->orderBy('n.title', 'ASC')
+  ->range(0,10);
+
+  $results = $query
+  ->execute()
+  ->fetchAll();
+
+  foreach ($results as $row) { 
+    if ($row->type == 'pet') {
+      $query = db_select('field_data_field_pets', 'p')
+      ->fields('p', array('entity_id'))
+      ->condition('p.field_pets_target_id', $row->nid)
+      ->range(0,1);
+
+      $results = $query
+      ->execute()
+      ->fetchAll();
+
+      $row->nid = $results[0]->entity_id;
+    }
+    
+    $nids[] = (int)$row->nid;
+  }
+
+  return $nids;
+}
+
+function motor_form($form, &$form_state) {
+
+  $form['search_phrase'] = array(
+    '#title' => t('Search'),
+    '#description' => t('Search for owners and pets by tehir name, address, etc.'),
+    '#type' => 'textfield',
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+
+  if (isset($form_state['storage'])) {
+    $form['output'] = array(
+      '#markup' => $form_state['storage']['output'],
+    );
+  }
+
+  $form['search_results'] = array(
+    '#markup' => '<div id="search-results-owners"></div>' . '<div id="search-results-pets"></div>',
+  );
+
+
+  return $form;
+}
+
+function motor_form_submit($form, &$form_state) {
+}
+
+function motor_block_info() {
+  $blocks = array();
+  
+  $blocks['vaccinate'] = array(
+    'info' => t('Vaccinate'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
+}
+
+function motor_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'vaccinate':
+      if (user_access('access content')) {
+          $block['subject'] = t('Vaccinate');
+          $block['content'] = l(t('New vaccinate'), '/node/add/event-vaccinate/' . arg(1), array(
+            'attributes' => array(
+              'id' => 'vaccinate',
+              'class' => array('add-event'),
+            ),
+          )) . '<div id="former-vaccinates">' . views_embed_view('former_vaccinates', 'default', arg(1)) . '</div>';
+      }
+      else {
+          $block['content'] = t('No content available.');
+      }
+    break;
+
+    
+  }
+  return $block;
+}
+
+function motor_node_presave($node) {
+
+  if ($node->type == 'pet') {
+    $node->title = str_replace(' 00:00:00', '', $node->title);
+
+    // Add species and breed.
+    if (empty($node->field_species[LANGUAGE_NONE])) {
+
+      $terms = explode(',', $node->field_add_species[LANGUAGE_NONE][0]['value']);
+
+    
+      $vocabulary = taxonomy_vocabulary_machine_name_load('species');
+
+      // Add species.
+      $parent_id = motor_save_new_term(trim($terms[0]), 'species');
+
+      // Add breed.
+      $term = new stdClass();
+      $term->name = trim($terms[1]);
+      $term->vid = $vocabulary->vid;
+      $term->parent = array($parent_id);
+      taxonomy_term_save($term);
+      $breed_id = $term->tid;
+
+      $node->field_species[LANGUAGE_NONE][0]['target_id'] = $breed_id;
+      
+    } else {
+      $term = taxonomy_get_parents($node->field_species[LANGUAGE_NONE][0]['target_id']);
+      if (empty($term)) {
+        // its species (parent)
+        $parent_id = $node->field_species[LANGUAGE_NONE][0]['target_id'];
+        // Add breed.
+        $term = new stdClass();
+        $term->name = trim($terms[1]);
+        $term->vid = $vocabulary->vid;
+        $term->parent = array($parent_id);
+        taxonomy_term_save($term);
+        $breed_id = $term->tid;
+
+        $node->field_species[LANGUAGE_NONE][0]['target_id'] = $breed_id;
+
+      } else {
+        // its breed (child) - everythin set, nothingto do
+
+      }
+    }
+  }
+}
+
+function motor_node_validate($node, $form, &$form_state) {
+
+  if ($node->type == 'pet' && is_null($node->field_species[LANGUAGE_NONE][0]['target_id'])) {
+      $terms = explode(',', $node->field_add_species[LANGUAGE_NONE][0]['value']);
+
+      if (count($terms) !== 2) {
+        form_set_error('field_add_species',  t('Excepted 2 values with comma delimiter'));
+      }
+  }
+
+  if ($node->type == 'drug_supply') {
+    $drug_node = node_load($node->field_drugs[LANGUAGE_NONE][0]['target_id']);
+
+    $term = taxonomy_term_load($drug_node->field_drug_type[LANGUAGE_NONE][0]['target_id']);
+
+
+    if (!empty($term)) {
+      if ($term->name == 'Narcotic' && empty($node->field_drug_distributor[LANGUAGE_NONE][0]['target_id'])) {
+
+        form_set_error('field_drug_distributor',  t('Drug distributor field is required in this case!'));
+      }
+    }
+  }
+}
+
+function motor_save_new_term($termName, $vocabName) {
+
+  $termObj = taxonomy_get_term_by_name($termName, $vocabName);
+  if (empty($termObj)) {
+    $vocabObj = taxonomy_vocabulary_machine_name_load($vocabName);
+ 
+    $term = (object) array(
+     'name' => $termName,
+     'vid' => $vocabObj->vid,
+    );
+
+    taxonomy_term_save($term);
+  } else {
+    $term = reset($termObj);
+  }
+
+  return $term->tid;
+
+}
+
+function motor_form_alter(&$form, &$form_state, $form_id) {
+
+  dpm($form_id);
+
+  if ($form_id == 'taxonomy_form_term') {
+    $form['actions']['submit']['#submit'][] = 'motor_term_artist_custom_submit';
+
+  }
+
+  if ($form_id == 'owner_node_form') {
+    $form['#attached']['js'][] = drupal_get_path('module', 'motor') . '/js/embed-entity-autonodetitle.js';
+  }
+
+}
+
+function motor_term_artist_custom_submit($form, &$form_state) {
+  unset($_GET['destination']);
+  unset($_REQUEST['edit']['destination']); 
+  $form_state['redirect'] = '/eloadok';
+}
