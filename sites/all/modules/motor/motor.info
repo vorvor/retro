@@ -1,4 +1,4 @@
-name = Tor - additional functions
-description = Additional functions to TOR.
+name = Retro 
+description = Additional functions to Retro.
 core = 7.x
 version = 7.x-1.x
