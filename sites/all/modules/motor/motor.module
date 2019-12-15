@@ -6,7 +6,7 @@ function motor_menu() {
     'title' => 'Dashboard',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('motor_form'),
-    'access callback' => TRUE,
+    'access callback' => FALSE,
     'type' => MENU_NORMAL_ITEM,
     'menu_name' => 'main-menu',
   );
@@ -246,8 +246,6 @@ function motor_save_new_term($termName, $vocabName) {
 }
 
 function motor_form_alter(&$form, &$form_state, $form_id) {
-
-  dpm($form_id);
 
   if ($form_id == 'taxonomy_form_term') {
     $form['actions']['submit']['#submit'][] = 'motor_term_artist_custom_submit';
