@@ -18,7 +18,19 @@
   Drupal.behaviors.my_custom_behavior = {
     attach: function (context, settings) {
 
-      // Place your code here.
+    	
+	    $(window).resize(function() {
+	    	$('.front-page-top .views-field-title').each(function() {
+	    		var height = $(this).height() * -1 + 5;
+	    		$(this).css('margin-top', height + 'px');
+	    	})
+	    	if ($(window).width() > 600) {
+	    		var rightHeight = $('#front-top-right').height();
+	    		$('#front-top-left').height(rightHeight);
+	    	}
+	    })
+	    
+    	
 
     }
   };
