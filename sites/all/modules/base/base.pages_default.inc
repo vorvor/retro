@@ -1127,33 +1127,6 @@ function base_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-6ad7ea02-c893-4f0a-a1a4-76f2bbd473ce';
-  $pane->panel = 'center';
-  $pane->type = 'custom';
-  $pane->subtype = 'custom';
-  $pane->shown = TRUE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'admin_title' => 'add new event',
-    'title' => '',
-    'title_heading' => 'h2',
-    'body' => '<p><a href="node/add/event">új esemény hozzáadása</a></p>
-',
-    'format' => 'filtered_html',
-    'substitute' => TRUE,
-  );
-  $pane->cache = array();
-  $pane->style = array(
-    'settings' => NULL,
-  );
-  $pane->css = array();
-  $pane->extras = array();
-  $pane->position = 0;
-  $pane->locks = array();
-  $pane->uuid = '6ad7ea02-c893-4f0a-a1a4-76f2bbd473ce';
-  $display->content['new-6ad7ea02-c893-4f0a-a1a4-76f2bbd473ce'] = $pane;
-  $display->panels['center'][0] = 'new-6ad7ea02-c893-4f0a-a1a4-76f2bbd473ce';
-  $pane = new stdClass();
   $pane->pid = 'new-b0939820-3875-4f38-bc5a-41aafdcd50cc';
   $pane->panel = 'center';
   $pane->type = 'views_panes';
@@ -1167,11 +1140,11 @@ function base_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 0;
   $pane->locks = array();
   $pane->uuid = 'b0939820-3875-4f38-bc5a-41aafdcd50cc';
   $display->content['new-b0939820-3875-4f38-bc5a-41aafdcd50cc'] = $pane;
-  $display->panels['center'][1] = 'new-b0939820-3875-4f38-bc5a-41aafdcd50cc';
+  $display->panels['center'][0] = 'new-b0939820-3875-4f38-bc5a-41aafdcd50cc';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-b0939820-3875-4f38-bc5a-41aafdcd50cc';
   $handler->conf['display'] = $display;
@@ -1443,35 +1416,6 @@ function base_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-61acc473-c225-42ae-b027-e23dde838400';
-  $pane->panel = 'center';
-  $pane->type = 'custom';
-  $pane->subtype = 'custom';
-  $pane->shown = TRUE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'admin_title' => 'add new article',
-    'title' => '',
-    'title_heading' => 'h2',
-    'body' => '<p><a href="node/add/article">új általános hír hozzáadása</a></p>
-
-<p><a href="node/add/then-and-now">új Egykor és most típusú hír hozzáadása</a></p>
-',
-    'format' => 'filtered_html',
-    'substitute' => TRUE,
-  );
-  $pane->cache = array();
-  $pane->style = array(
-    'settings' => NULL,
-  );
-  $pane->css = array();
-  $pane->extras = array();
-  $pane->position = 0;
-  $pane->locks = array();
-  $pane->uuid = '61acc473-c225-42ae-b027-e23dde838400';
-  $display->content['new-61acc473-c225-42ae-b027-e23dde838400'] = $pane;
-  $display->panels['center'][0] = 'new-61acc473-c225-42ae-b027-e23dde838400';
-  $pane = new stdClass();
   $pane->pid = 'new-da6ffc5a-2354-4e64-9c3a-849572802ef9';
   $pane->panel = 'center';
   $pane->type = 'views_panes';
@@ -1485,11 +1429,11 @@ function base_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 0;
   $pane->locks = array();
   $pane->uuid = 'da6ffc5a-2354-4e64-9c3a-849572802ef9';
   $display->content['new-da6ffc5a-2354-4e64-9c3a-849572802ef9'] = $pane;
-  $display->panels['center'][1] = 'new-da6ffc5a-2354-4e64-9c3a-849572802ef9';
+  $display->panels['center'][0] = 'new-da6ffc5a-2354-4e64-9c3a-849572802ef9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-da6ffc5a-2354-4e64-9c3a-849572802ef9';
   $handler->conf['display'] = $display;
