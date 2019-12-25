@@ -1037,33 +1037,6 @@ function base_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-32b96912-80aa-4b10-bfa8-aafdd9e74d24';
-  $pane->panel = 'center';
-  $pane->type = 'custom';
-  $pane->subtype = 'custom';
-  $pane->shown = TRUE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'admin_title' => 'add new artist',
-    'title' => '',
-    'title_heading' => 'h2',
-    'body' => '<p><a href="admin/structure/taxonomy/artist/add">új előadó hozzáadása</a></p>
-',
-    'format' => 'full_html',
-    'substitute' => TRUE,
-  );
-  $pane->cache = array();
-  $pane->style = array(
-    'settings' => NULL,
-  );
-  $pane->css = array();
-  $pane->extras = array();
-  $pane->position = 0;
-  $pane->locks = array();
-  $pane->uuid = '32b96912-80aa-4b10-bfa8-aafdd9e74d24';
-  $display->content['new-32b96912-80aa-4b10-bfa8-aafdd9e74d24'] = $pane;
-  $display->panels['center'][0] = 'new-32b96912-80aa-4b10-bfa8-aafdd9e74d24';
-  $pane = new stdClass();
   $pane->pid = 'new-2b8ccb0e-0bea-4083-8a74-e7eba4f6fa62';
   $pane->panel = 'center';
   $pane->type = 'views_panes';
@@ -1077,11 +1050,11 @@ function base_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 0;
   $pane->locks = array();
   $pane->uuid = '2b8ccb0e-0bea-4083-8a74-e7eba4f6fa62';
   $display->content['new-2b8ccb0e-0bea-4083-8a74-e7eba4f6fa62'] = $pane;
-  $display->panels['center'][1] = 'new-2b8ccb0e-0bea-4083-8a74-e7eba4f6fa62';
+  $display->panels['center'][0] = 'new-2b8ccb0e-0bea-4083-8a74-e7eba4f6fa62';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
