@@ -18,10 +18,17 @@
   Drupal.behaviors.my_custom_behavior = {
     attach: function (context, settings) {
 
-    	
+    	$('.front-page-top .views-field-title').each(function() {
+	    		var height = $(this).height() * -1;
+	    		$(this).css('margin-top', height + 'px');
+	    	})
+	    	if ($(window).width() > 600) {
+	    		var rightHeight = $('#front-top-right').height();
+	    		$('#front-top-left').height(rightHeight);
+	    	}
 	    $(window).resize(function() {
 	    	$('.front-page-top .views-field-title').each(function() {
-	    		var height = $(this).height() * -1 + 5;
+	    		var height = $(this).height() * -1;
 	    		$(this).css('margin-top', height + 'px');
 	    	})
 	    	if ($(window).width() > 600) {

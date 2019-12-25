@@ -22,6 +22,56 @@ function base_views_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function base_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: front_page_articles.
+  $styles['front_page_articles'] = array(
+    'label' => 'Front page articles',
+    'effects' => array(
+      2 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 400,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+      3 => array(
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => 400,
+          'height' => 200,
+          'anchor' => 'center-top',
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
+  // Exported image style: top_left.
+  $styles['top_left'] = array(
+    'label' => 'Top left',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 800,
+          'height' => '',
+          'upscale' => 1,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function base_node_info() {
@@ -30,6 +80,14 @@ function base_node_info() {
       'name' => t('Article'),
       'base' => 'node_content',
       'description' => t('Use <em>articles</em> for time-sensitive content like news, press releases or blog posts.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'bug' => array(
+      'name' => t('Bug'),
+      'base' => 'node_content',
+      'description' => '',
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
@@ -84,5 +142,19 @@ function base_node_info() {
     ),
   );
   drupal_alter('node_info', $items);
+  return $items;
+}
+
+/**
+ * Implements hook_paragraphs_info().
+ */
+function base_paragraphs_info() {
+  $items = array(
+    'song' => array(
+      'name' => 'Song',
+      'bundle' => 'song',
+      'locked' => '1',
+    ),
+  );
   return $items;
 }

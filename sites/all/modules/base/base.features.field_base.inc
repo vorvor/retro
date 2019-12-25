@@ -107,6 +107,39 @@ function base_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
+  // Exported field_base: 'field_assignee'.
+  $field_bases['field_assignee'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_assignee',
+    'indexes' => array(
+      'target_id' => array(
+        0 => 'target_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'entityreference',
+    'settings' => array(
+      'handler' => 'base',
+      'handler_settings' => array(
+        'behaviors' => array(
+          'views-select-list' => array(
+            'status' => 1,
+          ),
+        ),
+        'sort' => array(
+          'type' => 'none',
+        ),
+        'target_bundles' => array(),
+      ),
+      'target_type' => 'user',
+    ),
+    'translatable' => 0,
+    'type' => 'entityreference',
+  );
+
   // Exported field_base: 'field_awards'.
   $field_bases['field_awards'] = array(
     'active' => 1,
@@ -537,19 +570,45 @@ function base_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_remakes'.
-  $field_bases['field_remakes'] = array(
+  // Exported field_base: 'field_priority'.
+  $field_bases['field_priority'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_priority',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => 'low',
+        1 => 'normal',
+        2 => 'high',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_remake'.
+  $field_bases['field_remake'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_remakes',
+    'field_name' => 'field_remake',
     'indexes' => array(),
     'locked' => 0,
-    'module' => 'paragraphs',
+    'module' => 'video_embed_field',
     'settings' => array(),
     'translatable' => 0,
-    'type' => 'paragraphs',
+    'type' => 'video_embed_field',
   );
 
   // Exported field_base: 'field_song'.
@@ -616,6 +675,33 @@ function base_field_default_field_bases() {
     'type' => 'link_field',
   );
 
+  // Exported field_base: 'field_status'.
+  $field_bases['field_status'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_status',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => 'új',
+        1 => 'visszajelzés',
+        2 => 'befejezve',
+        3 => ' folyamatban',
+      ),
+      'allowed_values_function' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
   // Exported field_base: 'field_tickets'.
   $field_bases['field_tickets'] = array(
     'active' => 1,
@@ -662,6 +748,27 @@ function base_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'link_field',
+  );
+
+  // Exported field_base: 'field_url'.
+  $field_bases['field_url'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_url',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
   );
 
   // Exported field_base: 'field_web'.

@@ -1,11 +1,11 @@
 /* line 1, ../sass/style_mobile.sass */
-#front-top-left {
+.front-page-top-left {
   width: 100%;
   float: none;
 }
 
 /* line 4, ../sass/style_mobile.sass */
-#front-top-right {
+.front-page-top-right {
   width: 100%;
   float: none;
 }
@@ -45,4 +45,21 @@
 /* line 27, ../sass/style_mobile.sass */
 .view-articles-front .views-field-field-lead {
   padding: 0 5px;
+}
+
+/* line 31, ../sass/style_mobile.sass */
+.page-node .field-name-field-images,
+.page-esemenyek .field-name-field-images {
+  float: none;
+  width: 100%;
+}
+/* line 34, ../sass/style_mobile.sass */
+.page-node .field-name-field-images img,
+.page-esemenyek .field-name-field-images img {
+  width: 100%;
+}
+/* line 36, ../sass/style_mobile.sass */
+.page-node .panels-flexible-region,
+.page-esemenyek .panels-flexible-region {
+  width: 100%;
 }
