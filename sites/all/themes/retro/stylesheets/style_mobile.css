@@ -63,3 +63,12 @@
 .page-esemenyek .panels-flexible-region {
   width: 100%;
 }
+
+/* line 39, ../sass/style_mobile.sass */
+.view-events .views-field-field-images {
+  float: none;
+}
+/* line 41, ../sass/style_mobile.sass */
+.view-events .views-field-field-images img {
+  width: 100%;
+}

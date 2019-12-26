@@ -253,3 +253,53 @@
   padding: 2px 6px;
   line-height: 50px;
 }
+
+/* line 187, ../sass/style.sass */
+body.section-esemeny .field a {
+  color: #eee;
+  font-size: 40px;
+  text-decoration: none;
+  font-weight: bold;
+  background: #e3201b;
+  padding: 2px 6px;
+  line-height: 50px;
+}
+
+/* line 196, ../sass/style.sass */
+.views-field-view-node a {
+  color: #eee;
+  font-size: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  background: #e3201b;
+  padding: 2px 6px;
+  line-height: 50px;
+  text-align: right;
+  width: 100%;
+  display: block;
+}
+/* line 207, ../sass/style.sass */
+.views-field-view-node a::after {
+  content: ">";
+}
+
+/* line 210, ../sass/style.sass */
+.view-events .views-row {
+  clear: both;
+  overflow: hidden;
+}
+/* line 213, ../sass/style.sass */
+.view-events .views-field-field-images {
+  float: left;
+}
+
+/* line 218, ../sass/style.sass */
+.section-place .node-event h2 a {
+  color: #eee;
+  font-size: 40px;
+  text-decoration: none;
+  font-weight: bold;
+  background: #e3201b;
+  padding: 2px 6px;
+  line-height: 50px;
+}
