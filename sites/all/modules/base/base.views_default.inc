@@ -150,6 +150,26 @@ function base_views_default_views() {
   $handler->display->display_options['menu']['name'] = 'devel';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['administer_songs'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Content'),
+    t('- Choose an operation -'),
+    t('Published status'),
+    t('Page'),
+  );
   $export['administer_songs'] = $view;
 
   $view = new view();
@@ -229,6 +249,28 @@ function base_views_default_views() {
       'fixed' => '',
       'label' => 'Content: Nid',
     ),
+  );
+  $translatables['article_song'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Content entity referenced from field_song'),
+    t('Minden tudnivaló a [title] című dalról'),
+    t('<iframe width="560" height="315" src="https://www.youtube.com/embed/[field_youtube_id]" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+    t('All'),
+    t('Content pane'),
+    t('View panes'),
   );
   $export['article_song'] = $view;
 
@@ -321,6 +363,25 @@ function base_views_default_views() {
       'label' => 'Content: Nid',
     ),
   );
+  $translatables['articles_current_excluded'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('All'),
+    t('Content pane'),
+    t('View panes'),
+  );
   $export['articles_current_excluded'] = $view;
 
   $view = new view();
@@ -394,6 +455,17 @@ function base_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  $translatables['articles_front'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Content pane'),
+    t('View panes'),
+  );
   $export['articles_front'] = $view;
 
   $view = new view();
@@ -501,6 +573,31 @@ function base_views_default_views() {
       'label' => 'Content: Artist (field_artist)',
     ),
   );
+  $translatables['artist_events'] = array(
+    t('Master'),
+    t('[field_artist] hol hallgatható meg legközelebb?'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Taxonomy term entity referenced from field_place'),
+    t('Artist'),
+    t('[field_artist] [title]'),
+    t('Date'),
+    t('[name], [field_address_locality]'),
+    t('All'),
+    t('Content pane'),
+    t('View panes'),
+  );
   $export['artist_events'] = $view;
 
   $view = new view();
@@ -573,6 +670,28 @@ function base_views_default_views() {
       'fixed' => '',
       'label' => 'Taxonomy term: Term ID',
     ),
+  );
+  $translatables['artist_hits'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Content entity referenced from field_song'),
+    t('[title] című dal adatlapja'),
+    t('<iframe width="560" height="315" src="https://www.youtube.com/embed/[field_youtube_id]" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+    t('All'),
+    t('Content pane'),
+    t('View panes'),
   );
   $export['artist_hits'] = $view;
 
@@ -653,6 +772,27 @@ function base_views_default_views() {
       'label' => 'Content: Artist (field_artist)',
     ),
   );
+  $translatables['artist_related_songs'] = array(
+    t('Master'),
+    t('Az előadó zenéi'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('<iframe width="560" height="315" src="https://www.youtube.com/embed/[field_youtube_id]" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+    t('All'),
+    t('Content pane'),
+    t('View panes'),
+  );
   $export['artist_related_songs'] = $view;
 
   $view = new view();
@@ -707,6 +847,17 @@ function base_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  $translatables['artists'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Content pane'),
+    t('View panes'),
+  );
   $export['artists'] = $view;
 
   $view = new view();
@@ -860,6 +1011,30 @@ function base_views_default_views() {
   $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
   $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['bug_tracking'] = array(
+    t('Master'),
+    t('Bug tracking'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('User entity referenced from field_assignee'),
+    t('Assignee'),
+    t('Status'),
+    t('Priority'),
+    t('Assignee (field_assignee)'),
+    t('Status (field_status)'),
+    t('Page'),
+  );
   $export['bug_tracking'] = $view;
 
   $view = new view();
@@ -895,12 +1070,6 @@ function base_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['element_wrapper_type'] = 'h3';
-  /* Field: Field: Lead */
-  $handler->display->display_options['fields']['field_lead']['id'] = 'field_lead';
-  $handler->display->display_options['fields']['field_lead']['table'] = 'field_data_field_lead';
-  $handler->display->display_options['fields']['field_lead']['field'] = 'field_lead';
-  $handler->display->display_options['fields']['field_lead']['label'] = '';
-  $handler->display->display_options['fields']['field_lead']['element_label_colon'] = FALSE;
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
@@ -924,6 +1093,12 @@ function base_views_default_views() {
   );
   $handler->display->display_options['fields']['field_images']['delta_limit'] = '1';
   $handler->display->display_options['fields']['field_images']['delta_offset'] = '0';
+  /* Field: Field: Lead */
+  $handler->display->display_options['fields']['field_lead']['id'] = 'field_lead';
+  $handler->display->display_options['fields']['field_lead']['table'] = 'field_data_field_lead';
+  $handler->display->display_options['fields']['field_lead']['field'] = 'field_lead';
+  $handler->display->display_options['fields']['field_lead']['label'] = '';
+  $handler->display->display_options['fields']['field_lead']['element_label_colon'] = FALSE;
   /* Field: Content: Link to content */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
@@ -953,6 +1128,26 @@ function base_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  $translatables['events'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('term from field_artist'),
+    t('Tovább'),
+    t('Content pane'),
+    t('View panes'),
+  );
   $export['events'] = $view;
 
   $view = new view();
@@ -1062,6 +1257,18 @@ function base_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '2';
   $handler->display->display_options['pager']['options']['offset'] = '1';
+  $translatables['front_top_1_news'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Top left'),
+    t('View panes'),
+    t('Top right'),
+  );
   $export['front_top_1_news'] = $view;
 
   $view = new view();
@@ -1161,6 +1368,27 @@ function base_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  $translatables['news'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('term from field_artist'),
+    t('[field_images]'),
+    t('Tovább'),
+    t('Content pane'),
+    t('View panes'),
+  );
   $export['news'] = $view;
 
   $view = new view();
@@ -1416,6 +1644,38 @@ function base_views_default_views() {
       'label' => 'Content: Nid',
     ),
   );
+  $translatables['song'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('[title] - [field_artist] - [field_year]'),
+    t('<iframe width="560" height="315" src="https://www.youtube.com/embed/[field_youtube_id_1]" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'),
+    t('[title] a zenei listákon'),
+    t('[field_artist]: [title] a Youtube oldalán'),
+    t('[title] a Youtube oldalán'),
+    t('[field_artist] [title] című dalának adatai'),
+    t('Előadó'),
+    t('Album'),
+    t('Műfaj'),
+    t('Kiadás éve'),
+    t('Díjak'),
+    t('Tudj meg még többet [field_artist] [title] című daláról'),
+    t('[title] című dal szövege'),
+    t('All'),
+    t('Content pane'),
+    t('View panes'),
+  );
   $export['song'] = $view;
 
   $view = new view();
@@ -1486,6 +1746,25 @@ function base_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  $translatables['songs'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('<img src="https://img.youtube.com/vi/[field_youtube_id]/0.jpg">'),
+    t('Content pane'),
+    t('View panes'),
+  );
   $export['songs'] = $view;
 
   return $export;

@@ -10,6 +10,7 @@ dependencies[] = image
 dependencies[] = inline_entity_form
 dependencies[] = link
 dependencies[] = list
+dependencies[] = locale
 dependencies[] = menu
 dependencies[] = page_manager
 dependencies[] = paragraphs
