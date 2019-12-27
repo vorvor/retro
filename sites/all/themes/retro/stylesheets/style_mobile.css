@@ -78,3 +78,10 @@
 .view-events .views-field-field-images img {
   width: 100%;
 }
+
+/* line 48, ../sass/style_mobile.sass */
+.view-front-events .views-row {
+  overflow: hidden;
+  width: 100%;
+  margin: 0 10px 0 0;
+}
