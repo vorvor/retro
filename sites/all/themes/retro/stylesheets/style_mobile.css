@@ -1,74 +1,80 @@
-/* line 1, ../sass/style_mobile.sass */
+/* line 2, ../sass/style_mobile.sass */
+.header .pane-page-slogan {
+  font-size: 40px;
+  line-height: 50px;
+}
+
+/* line 5, ../sass/style_mobile.sass */
 .front-page-top-left {
   width: 100%;
   float: none;
 }
 
-/* line 4, ../sass/style_mobile.sass */
+/* line 8, ../sass/style_mobile.sass */
 .front-page-top-right {
   width: 100%;
   float: none;
 }
 
-/* line 8, ../sass/style_mobile.sass */
+/* line 12, ../sass/style_mobile.sass */
 .panels-flexible-region-1-center, .panels-flexible-region-3-front_news {
   width: 100%;
 }
 
-/* line 12, ../sass/style_mobile.sass */
+/* line 16, ../sass/style_mobile.sass */
 .front-page-top .views-field-title {
   margin-top: -126px;
 }
-/* line 14, ../sass/style_mobile.sass */
+/* line 18, ../sass/style_mobile.sass */
 .front-page-top .views-field-title a {
   font-size: 36px;
 }
-/* line 16, ../sass/style_mobile.sass */
+/* line 20, ../sass/style_mobile.sass */
 .front-page-top .views-field-field-lead {
   padding: 10px;
   border-bottom: 6px solid #e3201b;
 }
 
-/* line 20, ../sass/style_mobile.sass */
+/* line 24, ../sass/style_mobile.sass */
 #front-top-right .views-field-title {
   margin-top: -80px;
 }
 
-/* line 23, ../sass/style_mobile.sass */
+/* line 27, ../sass/style_mobile.sass */
 .view-articles-front .views-field-field-images {
   width: 100%;
 }
-/* line 25, ../sass/style_mobile.sass */
+/* line 29, ../sass/style_mobile.sass */
 .view-articles-front .views-field-field-images img {
   width: 100%;
 }
-/* line 27, ../sass/style_mobile.sass */
+/* line 31, ../sass/style_mobile.sass */
 .view-articles-front .views-field-field-lead {
   padding: 0 5px;
 }
 
-/* line 31, ../sass/style_mobile.sass */
+/* line 35, ../sass/style_mobile.sass */
 .page-node .field-name-field-images,
 .page-esemenyek .field-name-field-images {
   float: none;
   width: 100%;
 }
-/* line 34, ../sass/style_mobile.sass */
+/* line 38, ../sass/style_mobile.sass */
 .page-node .field-name-field-images img,
 .page-esemenyek .field-name-field-images img {
   width: 100%;
 }
-/* line 36, ../sass/style_mobile.sass */
+/* line 40, ../sass/style_mobile.sass */
 .page-node .panels-flexible-region,
 .page-esemenyek .panels-flexible-region {
   width: 100%;
 }
 
-/* line 39, ../sass/style_mobile.sass */
+/* line 43, ../sass/style_mobile.sass */
 .view-events .views-field-field-images {
   float: none;
 }
-/* line 41, ../sass/style_mobile.sass */
+/* line 45, ../sass/style_mobile.sass */
 .view-events .views-field-field-images img {
   width: 100%;
 }
