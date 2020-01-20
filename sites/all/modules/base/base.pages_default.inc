@@ -12,7 +12,7 @@ function base_default_page_manager_handlers() {
   $export = array();
 
   $handler = new stdClass();
-  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->disabled = TRUE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
   $handler->name = 'node_view__panel_context_17e35b2a-ec2c-4d4c-84e2-03ea131112f1';
   $handler->task = 'node_view';

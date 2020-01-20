@@ -1791,7 +1791,7 @@ function base_views_default_views() {
   $handler->display->display_options['fields']['nothing_3']['alter']['text'] = 'Tudj meg még többet [field_artist] [title] című daláról';
   $handler->display->display_options['fields']['nothing_3']['element_type'] = 'h3';
   $handler->display->display_options['fields']['nothing_3']['element_label_colon'] = FALSE;
-  /* Field: Content: Wikipedia */
+  /* Field: Field: Wikipedia */
   $handler->display->display_options['fields']['field_wikipedia']['id'] = 'field_wikipedia';
   $handler->display->display_options['fields']['field_wikipedia']['table'] = 'field_data_field_wikipedia';
   $handler->display->display_options['fields']['field_wikipedia']['field'] = 'field_wikipedia';
@@ -1974,6 +1974,16 @@ function base_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page_1');
+  $handler->display->display_options['path'] = 'dalok';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Dalok';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'main-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
   $translatables['songs'] = array(
     t('Master'),
     t('more'),
@@ -1992,6 +2002,7 @@ function base_views_default_views() {
     t('<img src="https://img.youtube.com/vi/[field_youtube_id]/0.jpg">'),
     t('Content pane'),
     t('View panes'),
+    t('Page'),
   );
   $export['songs'] = $view;
 

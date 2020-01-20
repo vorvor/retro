@@ -116,6 +116,7 @@ features[field_instance][] = taxonomy_term-artist-field_lead
 features[field_instance][] = taxonomy_term-artist-field_song
 features[field_instance][] = taxonomy_term-artist-field_twitter
 features[field_instance][] = taxonomy_term-artist-field_web
+features[field_instance][] = taxonomy_term-artist-field_wikipedia
 features[field_instance][] = taxonomy_term-artist-field_youtube_channel
 features[field_instance][] = taxonomy_term-place-field_address
 features[field_instance][] = taxonomy_term-place-field_body
