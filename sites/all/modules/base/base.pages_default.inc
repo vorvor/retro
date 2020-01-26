@@ -258,7 +258,7 @@ function base_default_page_manager_handlers() {
   $pane->panel = 'center';
   $pane->type = 'entity_field';
   $pane->subtype = 'node:field_images';
-  $pane->shown = TRUE;
+  $pane->shown = FALSE;
   $pane->access = array();
   $pane->configuration = array(
     'label' => 'hidden',
