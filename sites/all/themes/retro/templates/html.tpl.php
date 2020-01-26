@@ -20,6 +20,7 @@
 
   <?php print $styles; ?>
   <link href="https://fonts.googleapis.com/css?family=Merriweather:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700,900&amp;subset=latin-ext" rel="stylesheet">
   <?php print $scripts; ?>
   <?php if ($add_html5_shim): ?>
     <!--[if lt IE 9]>
