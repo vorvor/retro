@@ -124,6 +124,7 @@ features[field_instance][] = taxonomy_term-place-field_address
 features[field_instance][] = taxonomy_term-place-field_body
 features[image][] = front_page_articles
 features[image][] = top_left
+features[image][] = top_right
 features[menu_custom][] = main-menu
 features[menu_links][] = main-menu_bug-report:node/add/bug
 features[menu_links][] = main-menu_eladk-zenekarok-menedzselse:admin/structure/taxonomy_manager/voc/artist

@@ -68,6 +68,31 @@ function base_image_default_styles() {
     ),
   );
 
+  // Exported image style: top_right.
+  $styles['top_right'] = array(
+    'label' => 'Top right',
+    'effects' => array(
+      4 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 450,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+      5 => array(
+        'name' => 'image_crop',
+        'data' => array(
+          'width' => 450,
+          'height' => 250,
+          'anchor' => 'center-center',
+        ),
+        'weight' => 2,
+      ),
+    ),
+  );
+
   return $styles;
 }
 
