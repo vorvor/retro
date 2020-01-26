@@ -34,7 +34,7 @@ function base_image_default_styles() {
       2 => array(
         'name' => 'image_scale',
         'data' => array(
-          'width' => 400,
+          'width' => 800,
           'height' => '',
           'upscale' => 0,
         ),
@@ -43,8 +43,8 @@ function base_image_default_styles() {
       3 => array(
         'name' => 'image_crop',
         'data' => array(
-          'width' => 400,
-          'height' => 200,
+          'width' => 800,
+          'height' => 400,
           'anchor' => 'center-top',
         ),
         'weight' => 2,
