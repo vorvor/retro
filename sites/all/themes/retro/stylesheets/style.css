@@ -344,3 +344,8 @@ body.section-esemeny .field a {
 .view-articles-current-excluded .views-field-field-images img {
   width: 100%;
 }
+
+/* line 256, ../sass/style.sass */
+.node-type-article .pane-node-field-body iframe {
+  width: 100%;
+}
