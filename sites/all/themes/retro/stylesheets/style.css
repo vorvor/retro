@@ -349,8 +349,25 @@ body.section-esemeny .field a {
 .node-type-article .pane-node-field-body iframe {
   width: 100%;
 }
+/* line 258, ../sass/style.sass */
+.node-type-article .pane-node-field-artist {
+  background: red;
+  display: block;
+  margin-bottom: 30px;
+}
+/* line 262, ../sass/style.sass */
+.node-type-article .pane-node-field-artist a {
+  color: #eee;
+  font-size: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  background: #e3201b;
+  padding: 2px 6px;
+  line-height: 50px;
+  word-break: break-word;
+}
 
-/* line 259, ../sass/style.sass */
+/* line 272, ../sass/style.sass */
 .pane-node-field-artist .content {
   word-break: break-word;
 }
