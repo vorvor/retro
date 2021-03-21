@@ -26,53 +26,10 @@ CKEDITOR.editorConfig = function(config) {
 
   // [#1762328] Uncomment the line below to protect <code> tags in CKEditor (hide them in wysiwyg mode).
   // config.protectedSource.push(/<code>[\s\S]*?<\/code>/gi);
-  config.extraPlugins = 'button';
-  config.extraPlugins = 'panelbutton';
-  config.extraPlugins = 'colorbutton';
-  config.extraPlugins = 'colordialog';
-  config.extraPlugins = 'dialogui';
-  config.extraPlugins = 'dialog';
-  config.extraPlugins = 'liststyle';
-  config.extraPlugins = 'indent';
-  config.extraPlugins = 'indentlist';
-  config.extraPlugins = 'list';
-  config.extraPlugins = 'fakeobjects';
-  config.extraPlugins = 'iframe';
-  config.extraPlugins = 'iframedialog';
-  config.extraPlugins = 'panel';
-  config.extraPlugins = 'floatpanel';
-  config.extraPlugins = 'listblock';
-  config.extraPlugins = 'richcombo';
-  config.extraPlugins = 'font';
-  config.extraPlugins = 'justify';
-  config.extraPlugins = 'image2';
-  config.extraPlugins = 'widget';
-  config.extraPlugins = 'lineutils';
-  config.extraPlugins = 'clipboard';
-  config.extraPlugins = 'toolbar';
-  config.extraPlugins = 'widgetselection';
-  config.extraPlugins = 'youtube';
-  config.extraPlugins = 'simplebutton';
-
   config.extraPlugins = '';
-  config.extraPlugins = 'wordcount';
-  config.extraPlugins = 'undo';
-  config.extraPlugins = 'notification';
-  config.extraPlugins = 'htmlwriter';
 
-CKEDITOR.config.extraPlugins = 'toolbar';
-    CKEDITOR.config.extraPlugins = 'htmlwriter';
-    CKEDITOR.config.extraPlugins = 'notification';
-    CKEDITOR.config.extraPlugins = 'wordcount';
-    CKEDITOR.config.wordcount = {
-          showParagraphs: false,
-          showWordCount: true,
-          showCharCount: true,
-          countSpacesAsChars: true,
-          countHTML: false,
-          //maxWordCount: 10,
-//          maxCharCount: 10
-    };
+  // Insert all Smiley image paths as relative or they may fail on SSL pages.
+  config.smiley_path = window.CKEDITOR_BASEPATH + 'plugins/smiley/images/';
 
   /*
     * Append here extra CSS rules that should be applied into the editing area.
