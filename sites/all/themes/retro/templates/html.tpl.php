@@ -27,6 +27,7 @@
     <script src="<?php print $base_path . $path_to_zen; ?>/js/html5shiv.min.js"></script>
     <![endif]-->
   <?php endif; ?>
+  <script data-ad-client="ca-pub-2830242895030019" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
   <script>
